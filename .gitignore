@@ -2,6 +2,7 @@
 /public/hot
 /vendor
 /final.zip
+/storage.zip
 .env
 .env.backup
 .phpunit.result.cache

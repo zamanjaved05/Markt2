@@ -19,19 +19,19 @@
 {{----}}
 
 <!-- Preloader -->
-<div class="preloader">
-    <div class="preloader-inner text-center text-capitalize">
+{{--<div class="preloader">--}}
+{{--    <div class="preloader-inner text-center text-capitalize">--}}
 {{--        			<div class="preloader-icon">--}}
-     			<div class="">
-        <h1 style="font-size:50px;color: red">you can talk in these languages</h1>
-       <h1> <li>DEUTSCH</li></h1>
-       <h1> <li>ENGLISH</li></h1>
-       <h1> <li>PERSIAN</li></h1>
+{{--     			<div class="">--}}
+{{--        <h1 style="font-size:50px;color: red">you can talk in these languages</h1>--}}
+{{--       <h1> <li>DEUTSCH</li></h1>--}}
+{{--       <h1> <li>ENGLISH</li></h1>--}}
+{{--       <h1> <li>PERSIAN</li></h1>--}}
 
-        <span></span>
-    </div>
-</div>
-	</div>
+{{--        <span></span>--}}
+{{--    </div>--}}
+{{--</div>--}}
+{{--	</div>--}}
 <!-- End Preloader -->
 {{--	--}}
 {{--<div class="container-fluid">--}}

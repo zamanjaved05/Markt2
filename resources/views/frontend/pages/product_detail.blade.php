@@ -320,7 +320,7 @@
                                                             <!-- Single Rating -->
                                                             <div class="single-rating">
                                                                 <div class="rating-author">
-                                                                    @if($data->user_info['photo'])
+                                                                    @if($data->user_info['photo'] ?? '')
                                                                         <img src="{{$data->user_info['photo']}}"
                                                                              alt="{{$data->user_info['photo']}}">
                                                                     @else
@@ -329,7 +329,7 @@
                                                                     @endif
                                                                 </div>
                                                                 <div class="rating-des">
-                                                                    <h6>{{$data->user_info['name']}}</h6>
+                                                                    <h6>{{$data->user_info['name'] ?? ''}}</h6>
                                                                     <div class="ratings">
 
                                                                         <ul class="rating">
@@ -419,7 +419,7 @@
                                             @php
                                                 $after_discount=($data->price-(($data->discount*$data->price)/100));
                                             @endphp
-                                            <span class="old">${{number_format($data->price,2)}}</span>
+                                            <span class="old">€{{number_format($data->price,2)}}</span>
                                             <span>€{{number_format($after_discount,2)}}</span>
                                         </div>
 

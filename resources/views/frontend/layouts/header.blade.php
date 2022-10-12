@@ -200,6 +200,9 @@
                                             <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">{{__('header.blog')}}</a></li>
 
                                             <li class="{{Request::path()=='contact' ? 'active' : ''}}"><a href="{{route('contact')}}">{{__('header.contact us')}}
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </nav>
