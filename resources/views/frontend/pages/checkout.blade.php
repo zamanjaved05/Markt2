@@ -115,6 +115,35 @@
                                 <!-- Order Widget -->
                                 <div class="single-widget">
 
+
+                                    <!--     -->
+                                    <tbody id="cart_item_list">
+                                    <form action="{{route('cart.update')}}" method="POST">
+                                        @csrf
+                                        @if(Helper::getAllProductFromCart())
+                                            @foreach(Helper::getAllProductFromCart() as $key=>$cart)
+                                                <tr>
+                                                    @php
+                                                        $photo=explode(',',$cart->product['photo']);
+                                                    @endphp
+                                                    <td class="image " data-title="No">
+                                                        <img src="{{$photo[0]}}" alt="{{$photo[0]}}" class="mb-1" style="width: 30%">
+                                                    </td>
+                                           </tr>
+                                            @endforeach
+
+                                        @else
+                                            <tr>
+                                                <td class="text-center">
+                                                    There are no any carts available. <a href="{{route('product-grids')}}" style="color:blue;">{{__('product.Continue shopping')}}</a>
+
+                                                </td>
+                                            </tr>
+                                        @endif
+
+                                    </form>
+                                    </tbody>
+                                    <!--    -->
                                     <h2>
                                         {{__('product.CART TOTALS')}}
                                     </h2>

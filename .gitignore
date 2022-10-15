@@ -3,6 +3,7 @@
 /vendor
 /final.zip
 /storage.zip
+/Markt2.zip
 .env
 .env.backup
 .phpunit.result.cache
