@@ -152,7 +152,7 @@ class OrderController extends Controller
                 $data = $request->all();
              //dd($data);
                 //to email is the receiver email
-                Mail::to('msg@asmamarkt-wetzler.com')->send(new MyTestMail($data));
+                Mail::to('info@asmamarkt-wetzler.com')->send(new MyTestMail($data));
                 request()->session()->flash('success','Your product successfully placed in order');
                 return redirect()->route('home');
     }

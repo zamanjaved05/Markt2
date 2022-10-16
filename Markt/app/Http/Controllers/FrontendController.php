@@ -461,7 +461,7 @@ class FrontendController extends Controller
         $data = $request->all();
      //dd($data);
         //to email is the receiver email
-        Mail::to('msg@asmamarkt-wetzler.com')->send(new MyTestMail($data));
+        Mail::to('info@asmamarkt-wetzler.com')->send(new MyTestMail($data));
 
         return back()->with('success', 'Thanks for contacting me, I will get back to you soon!');
 
