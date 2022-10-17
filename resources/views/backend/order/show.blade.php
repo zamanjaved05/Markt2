@@ -114,33 +114,14 @@
                                             <td>Images</td>
                                             <td>
                                                 <!--     -->
-                                                <tbody id="cart_item_list">
-                                                <form action="{{route('cart.update')}}" method="POST">
-                                                    @csrf
-                                                    @if(Helper::getAllProductFromCart())
-                                                        @foreach(Helper::getAllProductFromCart() as $key=>$cart)
-                                                            <div class="row">
-                                                                @php
-                                                                    $photo=explode(',',$cart->product['photo']);
-                                                                @endphp
-                                                                <td class="image " data-title="No">
-                                                                    <img src="{{$photo[0]}}" alt="{{$photo[0]}}" style="width: 60%">
-                                                                </td>
-                                                            </div>
-                                                        @endforeach
-
-                                                    @else
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                There are no any carts available. <a href="{{route('product-grids')}}" style="color:blue;">{{__('product.Continue shopping')}}</a>
-
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-
-                                                </form>
-                                                </tbody>
+                                                <?php
+                                                    $datas = explode(',', $order->photo);
+                                                        ?>
+                                                @foreach($datas as $orders)
+                                                <img src="{{$orders}}" alt="" style="width: 30%">
                                                 <!--    -->
+                                                @endforeach
+
                                             </td>
                                         </tr>
 

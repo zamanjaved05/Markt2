@@ -27,7 +27,16 @@
                 <form class="form" method="POST" action="{{route('cart.order')}}">
                     @csrf
                     <div class="row">
-
+                        @if(Helper::getAllProductFromCart())
+                            @foreach(Helper::getAllProductFromCart() as $key=>$cart)
+                                <tr>
+                                    @php
+                                        $photo=explode(',',$cart->product['photo']);
+                                    @endphp
+                                  <input name="photo[]" class="img-fluid" src="{{$photo[0]}}" value="{{$photo[0]}}" multiple="multiple" hidden>
+                              </tr>
+                            @endforeach
+                        @endif
                         <div class="col-lg-8 col-12">
                             <div class="checkout-form">
                                 <h2>{{__('product.Make Your Checkout Here')}}</h2>
@@ -187,10 +196,10 @@
                                     <h2>{{__('product.Payments')}}</h2>
                                     <div class="content">
                                         <div class="checkbox">
-                                             <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>
+{{--                                             <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>--}}
                                             <form-group>
                                                 <input name="payment_method" checked type="radio" value="cod" required> <label> {{__('product.Cash On Delivery')}}</label><br>
-                                                <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label>
+{{--                                                <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label>--}}
                                             </form-group>
 
                                         </div>

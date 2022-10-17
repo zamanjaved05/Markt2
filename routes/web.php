@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear', function() {
+      $exitCode = Artisan::call('optimize:clear');
+     return back();
+});
+
 
 Auth::routes(['register'=>false]);
 

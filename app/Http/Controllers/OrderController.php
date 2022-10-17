@@ -42,10 +42,11 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+//       /. dd($request->all());
         $this->validate($request,[
             'first_name'=>'string|required',
             'last_name'=>'string|required',
@@ -91,8 +92,23 @@ class OrderController extends Controller
         //         }
         // }
 
-        $order=new Order();
+
         $order_data=$request->all();
+
+        if($request->hasFile('photo'))
+        {
+            $names = [];
+            foreach($request->file('photo') as $image)
+            {
+                $destinationPath = 'storage/photos/1/Products/';
+                $filename = $image->getClientOriginalName();
+                $image->move($destinationPath, $filename);
+                array_push($names, $filename);
+
+            }
+            $order_data['photo'] = json_encode($names);
+        }
+        $order_data['photo'] = implode(',', $order_data['photo']);
         $order_data['order_number']='ORD-'.strtoupper(Str::random(10));
         $order_data['user_id']=$request->user()->id;
         $order_data['shipping_id']=$request->shipping;
@@ -100,6 +116,8 @@ class OrderController extends Controller
         // return session('coupon')['value'];
         $order_data['sub_total']=Helper::totalCartPrice();
         $order_data['quantity']=Helper::cartCount();
+
+
         if(session('coupon')){
             $order_data['coupon']=session('coupon')['value'];
         }
@@ -129,8 +147,10 @@ class OrderController extends Controller
             $order_data['payment_method']='cod';
             $order_data['payment_status']='Unpaid';
         }
-        $order->fill($order_data);
-        $status=$order->save();
+        //  $order1   =      $order->fill($order_data);
+         $order = Order::query()->create($order_data);
+
+
         if($order)
         // dd($order->id);
         $users=User::where('role','admin')->first();
@@ -141,7 +161,7 @@ class OrderController extends Controller
         ];
         Notification::send($users, new StatusNotification($details));
         if(request('payment_method')=='paypal'){
-            return redirect()->route('payment')->with(['id'=>$order->id]);
+            return redirect()->route('payment')->with(['id'=>$order->id, 'order'=>$order]);
         }
         else{
             session()->forget('cart');
